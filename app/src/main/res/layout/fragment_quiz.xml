@@ -22,10 +22,11 @@
         android:layout_gravity="center_horizontal"/>
 
     <ImageView
-        android:layout_width="328dp"
-        android:layout_height="193dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:id="@+id/flagImageView"
-        android:layout_weight="0.03"/>
+        android:layout_weight="1"
+        android:contentDescription="@string/flag_content_description" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,8 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/row1LinearLayout"
-        android:measureWithLargestChild="false"
-        android:padding="5dp">
+        android:measureWithLargestChild="false">
 
         <Button
             android:layout_width="0dp"
@@ -49,7 +49,7 @@
             android:text="New Button"
             android:id="@+id/button"
             android:layout_weight="1"
-            android:background="@color/colorAccent" />
+            style="@android:style/Widget.Material.Button.Colored" />
 
         <Button
             android:layout_width="0dp"
@@ -57,7 +57,7 @@
             android:text="New Button"
             android:id="@+id/button2"
             android:layout_weight="1"
-            android:background="@color/colorAccent" />
+            style="@android:style/Widget.Material.Button.Colored" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,7 +73,7 @@
             android:text="New Button"
             android:id="@+id/button3"
             android:layout_weight="1"
-            android:background="@color/colorAccent" />
+            style="@android:style/Widget.Material.Button.Colored" />
 
         <Button
             android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
             android:text="New Button"
             android:id="@+id/button4"
             android:layout_weight="1"
-            android:background="@color/colorAccent" />
+            style="@android:style/Widget.Material.Button.Colored" />
     </LinearLayout>
 
     <LinearLayout
@@ -97,7 +97,7 @@
             android:text="New Button"
             android:id="@+id/button5"
             android:layout_weight="1"
-            android:background="@color/colorAccent" />
+            style="@android:style/Widget.Material.Button.Colored" />
 
         <Button
             android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
             android:text="New Button"
             android:id="@+id/button6"
             android:layout_weight="1"
-            android:background="@color/colorAccent" />
+            style="@android:style/Widget.Material.Button.Colored" />
     </LinearLayout>
 
     <LinearLayout
@@ -121,7 +121,7 @@
             android:text="New Button"
             android:id="@+id/button7"
             android:layout_weight="1"
-            android:background="@color/colorAccent" />
+            style="@android:style/Widget.Material.Button.Colored" />
 
         <Button
             android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
             android:text="New Button"
             android:id="@+id/button8"
             android:layout_weight="1"
-            android:background="@color/colorAccent" />
+            style="@android:style/Widget.Material.Button.Colored" />
     </LinearLayout>
 
     <TextView
