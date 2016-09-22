@@ -40,21 +40,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/row1LinearLayout"
-        android:measureWithLargestChild="false">
+        android:measureWithLargestChild="false"
+        android:padding="5dp">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button2"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
     </LinearLayout>
 
     <LinearLayout
@@ -69,14 +72,16 @@
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button3"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button4"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
     </LinearLayout>
 
     <LinearLayout
@@ -91,14 +96,16 @@
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button5"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button6"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
     </LinearLayout>
 
     <LinearLayout
@@ -113,14 +120,16 @@
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button7"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button8"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/colorAccent" />
     </LinearLayout>
 
     <TextView
