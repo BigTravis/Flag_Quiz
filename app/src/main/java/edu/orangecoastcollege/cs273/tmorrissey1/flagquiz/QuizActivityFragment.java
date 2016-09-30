@@ -251,16 +251,42 @@ public class QuizActivityFragment extends Fragment {
                             return builder.create();
                         }
                     };
+
+                    quizResults.setCancelable(false);
+                    quizResults.show(getFragmentManager(), "quiz results");
                 }
+                else {
+                    // Answer is correct but quiz is not over
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadNextFlag();
+                        }
+                    }, 2000); // 2000 milliseconds for 2 second delay
+                }
+            }
+            else { // Answer was incorrect
+
+                // Display incorrect in red
+                answerTextView.setText(R.string.incorrect_answer);
+                answerTextView.setTextColor(getResources().getColor(R.color.incorrect_answer,
+                        getContext().getTheme()));
+                guessButton.setEnabled(false);
             }
         }
     };
 
     private String getCountryName(String s) {
-        return s.replaceAll("_", " ");
+        return s.substring(s.indexOf('-')+ 1).replaceAll("_", " ");
     }
 
     private void disableButtons() {
+        for (int i = 0; i < guessRows; ++i) {
+            LinearLayout guessRow = guessLinearLayouts[i];
+            int childCount = guessRow.getChildCount();
 
+            for (int j = 0; j < childCount; ++j)
+                guessRow.getChildAt(j).setEnabled(false);
+        }
     }
 }
