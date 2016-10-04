@@ -2,14 +2,14 @@ package edu.orangecoastcollege.cs273.tmorrissey1.flagquiz;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +29,7 @@ import java.util.Set;
 
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment of QuizActivity. Handles all the game logic of FlagQuiz and updates the View
  */
 public class QuizActivityFragment extends Fragment {
 
@@ -52,10 +52,16 @@ public class QuizActivityFragment extends Fragment {
     private LinearLayout[] guessLinearLayouts;
     private TextView answerTextView;
 
-
-    public QuizActivityFragment() {
-    }
-
+    /**
+     * Called to have the fragment instantiate its user interface view.
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container  If non-null, this is the parent view that the fragment's UI should be
+     *                   attached to. The fragment should not add the view itself, but this can be
+     *                   used to generate the LayoutParams of the view.
+     * @param savedInstanceState  If non-null, this fragment is being re-constructed from a previous
+     *                            saved state as given here.
+     * @return Return the View for the fragment's UI, or null.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,6 +97,10 @@ public class QuizActivityFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Updates the number of guess rows to be shown based on changes to settings
+     * @param sharedPreferences The preference data
+     */
     public void updateGuessRows(SharedPreferences sharedPreferences) {
         // Get number of guess rows that should be displayed
         String choices = sharedPreferences.getString(QuizActivity.CHOICES, null);
@@ -105,10 +115,17 @@ public class QuizActivityFragment extends Fragment {
             guessLinearLayouts[row].setVisibility(View.VISIBLE);
     }
 
+    /**
+     * Updates which regions to use when displaying flags
+     * @param sharedPreferences The preference data
+     */
     public void updateRegions(SharedPreferences sharedPreferences) {
         regionsSet = sharedPreferences.getStringSet(QuizActivity.REGIONS, null);
     }
 
+    /**
+     * Resets the quiz.
+     */
     public void resetQuiz() {
         // Use AssetManager to get image file names for enabled regions
         AssetManager assets = getActivity().getAssets();
@@ -150,6 +167,9 @@ public class QuizActivityFragment extends Fragment {
         loadNextFlag();
     }
 
+    /**
+     * Loads next flag to be shown.
+     */
     private void loadNextFlag() {
         // Get file name of next flag and remove it from the list
         String nextImage = quizCountriesList.remove(0);
@@ -230,27 +250,30 @@ public class QuizActivityFragment extends Fragment {
                 // If the user has correctly identified FLAGS_IN_QUIZ flags
                 if (correctAnswers == FLAGS_IN_QUIZ) {
                     // DialogFragment to display quiz stats and start new quiz
-                    DialogFragment quizResults = new DialogFragment() {
-                        // Create an AlertDialog and return it
-                        @Override
-                        public Dialog onCreateDialog(Bundle bundle) {
 
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                            builder.setMessage(getString(R.string.results, totalGuesses,
-                                    (1000.0 / (double) totalGuesses)));
+                        DialogFragment quizResults = new DialogFragment() {
+                            // Create an AlertDialog and return it
+                            @Override
+                            public Dialog onCreateDialog(Bundle bundle) {
 
-                            // "Reset Quiz" button
-                            builder.setPositiveButton(R.string.reset_quiz,
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            resetQuiz();
-                                        }
-                                    });
-                            // Return the AlertDialog
-                            return builder.create();
-                        }
-                    };
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                builder.setMessage(getString(R.string.results, totalGuesses,
+                                        (1000.0 / (double) totalGuesses)));
+
+                                // "Reset Quiz" button
+                                builder.setPositiveButton(R.string.reset_quiz,
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                resetQuiz();
+                                            }
+                                        });
+                                // Return the AlertDialog
+                                return builder.create();
+                            }
+                        };
+
+
 
                     quizResults.setCancelable(false);
                     quizResults.show(getFragmentManager(), "quiz results");
@@ -276,10 +299,18 @@ public class QuizActivityFragment extends Fragment {
         }
     };
 
+    /**
+     * Formats the Country's name to the proper format for displaying to user
+     * @param s the country's name
+     * @return Returns a formatted version of the country's name
+     */
     private String getCountryName(String s) {
         return s.substring(s.indexOf('-')+ 1).replaceAll("_", " ");
     }
 
+    /**
+     * Disables all buttons
+     */
     private void disableButtons() {
         for (int i = 0; i < guessRows; ++i) {
             LinearLayout guessRow = guessLinearLayouts[i];
@@ -289,4 +320,8 @@ public class QuizActivityFragment extends Fragment {
                 guessRow.getChildAt(j).setEnabled(false);
         }
     }
+
+
+
 }
+
